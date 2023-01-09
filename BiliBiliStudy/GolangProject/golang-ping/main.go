@@ -97,7 +97,7 @@ func main() {
 		fmt.Printf("正在加收来自 %d.%d.%d.%d 的回复：字节=%d 时间=%d ms TTL=%d\n", recive[12], recive[13], recive[14], recive[15], n-28, tsub, recive[8])
 		time.Sleep(time.Second)
 	}
-	fmt.Printf("%s 的Ping统计信息：\n    数据包：已发送 = %d，已接受 = %d, 丢失 = %d（%.2f%%丢失）\n往返行程的估计时间(以毫秒为单位):\n 最短=%d ms，最长=%d ms\n",
+	fmt.Printf("%s 的Ping统计信息:\n    数据包：已发送 = %d,已接受 = %d, 丢失 = %d(%.2f%%丢失）\n往返行程的估计时间(以毫秒为单位):\n 最短=%d ms,最长=%d ms\n",
 		conn.RemoteAddr(), sendCount, successCount, failCount, float64(failCount)/float64(sendCount), minTime, maxTime)
 }
 
