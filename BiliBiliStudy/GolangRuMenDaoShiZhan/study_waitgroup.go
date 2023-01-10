@@ -8,7 +8,7 @@ import (
 var wg sync.WaitGroup
 
 func hello(i int) {
-	defer wg.Done()
+	defer wg.Add(-1) // wg.Done() 功能相同
 	fmt.Printf("hello i: %v\n", i)
 }
 func main() {
