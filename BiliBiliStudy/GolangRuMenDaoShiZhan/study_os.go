@@ -14,7 +14,9 @@ func main() {
 	// ReadFile()
 	// WriteFile()
 	// OpenClose()
-	ReadOps()
+	// ReadOps()
+	Write()
+	WriteString()
 }
 
 // https://pkg.go.dev/std 标准库的文档
@@ -153,4 +155,22 @@ func ReadOps() {
 		fmt.Printf("v.IsDir(): %v\n", v.IsDir())
 		fmt.Printf("v.Name(): %v\n", v.Name())
 	}
+}
+
+func Write() {
+	f, err := os.OpenFile("a.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0755)
+	if err != nil {
+		fmt.Printf("err: %v\n", err)
+	}
+	f.Write([]byte("hello"))
+	f.Close()
+}
+
+func WriteString() {
+	f, err := os.OpenFile("a.txt", os.O_RDWR|os.O_CREATE|os.O_TRUNC, os.ModePerm)
+	if err != nil {
+		fmt.Printf("err: %v\n", err)
+	}
+	f.WriteString("hello min hong bo")
+	f.Close()
 }
