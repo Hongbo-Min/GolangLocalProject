@@ -12,7 +12,9 @@ func main() {
 	// GetPWD()
 	// Rename()
 	// ReadFile()
-	WriteFile()
+	// WriteFile()
+	// OpenClose()
+	ReadOps()
 }
 
 // https://pkg.go.dev/std 标准库的文档
@@ -76,7 +78,7 @@ func GetPWD() {
 }
 
 func Rename() {
-	err := os.Rename("1.txt", "2.txt")
+	err := os.Rename("text.txt", "2.txt")
 	if err != nil {
 		fmt.Println("err: ", err)
 	}
@@ -95,5 +97,60 @@ func WriteFile() {
 	err := os.WriteFile("test.txt", []byte("hong bo"), os.ModePerm)
 	if err != nil {
 		fmt.Println("err: ", err)
+	}
+}
+
+func OpenClose() {
+	f, err := os.Open("text.txt")
+	defer f.Close()
+	if err != nil {
+		fmt.Println("err: ", err)
+	} else {
+		fmt.Printf("f.Name(): %v\n", f.Name())
+	}
+
+	f2, err2 := os.OpenFile("text.txt", os.O_RDWR|os.O_CREATE, 0755)
+	if err2 != nil {
+		fmt.Println("err: ", err)
+	} else {
+		fmt.Printf("f2.Name(): %v\n", f2.Name())
+	}
+}
+
+func ReadOps() {
+	/* f, err := os.Open("text.txt")
+	if err != nil {
+		fmt.Printf("err: %v\n", err)
+	}
+	defer f.Close()
+	for {
+		buf := make([]byte, 10)
+		n, err2 := f.Read(buf)
+		fmt.Println("n : ", n, string(buf))
+		if err2 == io.EOF {
+			break
+		}
+	} */
+
+	/* f, err := os.Open("text.txt")
+	if err != nil {
+		fmt.Printf("err: %v\n", err)
+	}
+	buf := make([]byte, 3)
+	n, err2 := f.ReadAt(buf, 3)
+	if err2 != nil {
+		fmt.Printf("err2: %v\n", err2)
+	} else {
+		fmt.Printf("n: %v\n", n)
+	}
+	fmt.Printf("string(buf): %v\n", string(buf)) */
+
+	de, err := os.ReadDir("a")
+	if err != nil {
+		fmt.Printf("err: %v\n", err)
+	}
+	for _, v := range de {
+		fmt.Printf("v.IsDir(): %v\n", v.IsDir())
+		fmt.Printf("v.Name(): %v\n", v.Name())
 	}
 }
