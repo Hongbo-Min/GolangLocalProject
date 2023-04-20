@@ -1,0 +1,102 @@
+[
+ {
+  "frame_name": "0001",
+  "images": [
+   {
+    "annotations": [
+     {
+      "anno": [],
+      "lidar_name": ""
+     }
+    ],
+    "cam_name": "back"
+   },
+   {
+    "annotations": [
+     {
+      "anno": [],
+      "lidar_name": ""
+     }
+    ],
+    "cam_name": "front"
+   },
+   {
+    "annotations": [
+     {
+      "anno": [],
+      "lidar_name": ""
+     }
+    ],
+    "cam_name": "front_left"
+   }
+  ],
+  "pointclouds": [
+   {
+    "annotations": [
+     {
+      "anno": []
+     }
+    ],
+    "lidar_name": "m1"
+   },
+   {
+    "annotations": [
+     {
+      "anno": []
+     }
+    ],
+    "lidar_name": "pandar128"
+   }
+  ]
+ },
+ {
+  "frame_name": "0002",
+  "images": [
+   {
+    "annotations": [
+     {
+      "anno": [],
+      "lidar_name": ""
+     }
+    ],
+    "cam_name": "back"
+   },
+   {
+    "annotations": [
+     {
+      "anno": [],
+      "lidar_name": ""
+     }
+    ],
+    "cam_name": "front"
+   },
+   {
+    "annotations": [
+     {
+      "anno": [],
+      "lidar_name": ""
+     }
+    ],
+    "cam_name": "front_left"
+   }
+  ],
+  "pointclouds": [
+   {
+    "annotations": [
+     {
+      "anno": []
+     }
+    ],
+    "lidar_name": "m1"
+   },
+   {
+    "annotations": [
+     {
+      "anno": []
+     }
+    ],
+    "lidar_name": "pandar128"
+   }
+  ]
+ }
+]
