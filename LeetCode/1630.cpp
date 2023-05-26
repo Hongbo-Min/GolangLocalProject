@@ -3,8 +3,10 @@
 #include <vector>
 
 class Solution {
- public:
-  std::vector<bool> checkArithmeticSubarrays(std::vector<int> &nums, std::vector<int> &l, std::vector<int> &r) {
+public:
+  std::vector<bool> checkArithmeticSubarrays(std::vector<int> &nums,
+                                             std::vector<int> &l,
+                                             std::vector<int> &r) {
     int n = nums.size();
     int m = l.size();
     std::vector<bool> result(m, true);
