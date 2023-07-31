@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"io"
 	"log"
 
 	"github.com/rosedblabs/wal"
@@ -13,6 +14,7 @@ var KVMap map[string]*wal.ChunkPosition
 func main() {
 	KVMap = make(map[string]*wal.ChunkPosition)
 	wal, _ := wal.Open(wal.DefaultOptions)
+	defer wal.Close()
 
 	for {
 		err := userWriteData(wal)
@@ -33,6 +35,22 @@ func userWriteData(wal *wal.WAL) error {
 	fmt.Println("请输入key: ")
 	fmt.Scanln(&key)
 	fmt.Println("输入的内容为: ", key)
+
+	if key == "update" {
+		reader := wal.NewReader()
+		for {
+			val, pos, err := reader.Next()
+			if err == io.EOF {
+				break
+			}
+			fmt.Println(string(val))
+			fmt.Println(pos)
+		}
+	}
+
+	if key == "clear" {
+		wal.Delete()
+	}
 
 	cp, err := wal.Write([]byte(key))
 	if err != nil {
