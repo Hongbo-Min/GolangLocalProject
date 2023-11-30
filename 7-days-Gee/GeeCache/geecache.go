@@ -43,6 +43,13 @@ func NewGroup(name string, cacheBytes int64, getter Getter) *Group {
 	return g
 }
 
+func GetGroup(name string) *Group {
+	mu.RLock()
+	defer mu.RUnlock()
+	g := groups[name]
+	return g
+}
+
 func (g *Group) Get(key string) (ByteView, error) {
 	if key == "" {
 		return ByteView{}, fmt.Errorf("key is required")
