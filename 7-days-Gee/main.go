@@ -1,7 +1,7 @@
 package main
 
 import (
-	geecache "Hongbo-Min-github/GolangLocalProject/7-days-Gee/GeeCache"
+	geecache "Hongbo-Min-github/GolangLocalProject/7-days-Gee/geecache"
 	"flag"
 	"fmt"
 	"log"

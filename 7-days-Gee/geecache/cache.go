@@ -1,7 +1,7 @@
 package geecache
 
 import (
-	"Hongbo-Min-github/GolangLocalProject/7-days-Gee/GeeCache/lru"
+	"Hongbo-Min-github/GolangLocalProject/7-days-Gee/geecache/lru"
 	"sync"
 )
 
