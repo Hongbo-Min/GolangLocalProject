@@ -9,6 +9,7 @@ import (
 	hello "GolangLocalProject/go_advance_program/proto"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 )
 
 type HelloServiceImpl struct{}
@@ -38,7 +39,11 @@ func (p *HelloServiceImpl) Channel(stream hello.HelloService_ChannelServer) erro
 }
 
 func main() {
-	grpcServer := grpc.NewServer()
+	creds, err := credentials.NewServerTLSFromFile("./openssl_server/server.crt", "./openssl_server/server.key")
+	if err != nil {
+		log.Fatal(err)
+	}
+	grpcServer := grpc.NewServer(grpc.Creds(creds))
 	hello.RegisterHelloServiceServer(grpcServer, new(HelloServiceImpl))
 
 	listener, err := net.Listen("tcp", ":1234")

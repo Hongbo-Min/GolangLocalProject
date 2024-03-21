@@ -2,18 +2,39 @@ package main
 
 import (
 	"context"
+	"crypto/tls"
+	"crypto/x509"
 	"fmt"
 	"io"
 	"log"
+	"os"
 	"time"
 
 	hello "GolangLocalProject/go_advance_program/proto"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 )
 
 func main() {
-	conn, err := grpc.Dial("localhost:1234", grpc.WithInsecure())
+	certificate, err := tls.LoadX509KeyPair("./openssl_client/client.crt", "./openssl_client/client.key")
+	if err != nil {
+		log.Fatal(err)
+	}
+	certPool := x509.NewCertPool()
+	ca, err := os.ReadFile("./openssl_server/ca.crt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	if ok := certPool.AppendCertsFromPEM(ca); !ok {
+		log.Fatal("failed to append ca certs")
+	}
+	creds := credentials.NewTLS(&tls.Config{
+		Certificates: []tls.Certificate{certificate},
+		ServerName:   "server.grpc.io",
+		RootCAs:      certPool,
+	})
+	conn, err := grpc.Dial("localhost:1234", grpc.WithTransportCredentials(creds))
 	if err != nil {
 		log.Fatal(err)
 	}
